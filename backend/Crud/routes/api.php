@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('createUser',  [UserController::class, 'addUser']);
+Route::post('createClient',  [UserController::class, 'addUser']);
 
 //Export route
-Route::get('export', [UserController::class, "export"])->name("export");
+Route::get('getClient', [UserController::class, "getClient"])->name("getclient");

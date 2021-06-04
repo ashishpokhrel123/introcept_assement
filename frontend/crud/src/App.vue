@@ -1,19 +1,21 @@
 <template>
   <div>
-    <UserInfo />
+    <Client />
     
     
   </div>
 </template>
 
 <script>
-import UserInfo from './components/UserInfo.vue'
+
+import Client from './components/Client';
 
 
 export default {
   name: 'App',
   components: {
-    UserInfo
+    
+    Client
    
     
   }

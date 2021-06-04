@@ -1,6 +1,6 @@
 
 <template>
-<div class="UserInfo">
+<div class="CreateClient">
   <div class="container">
       <p v-if="errors.length">
     <b>Please correct the following error(s):</b>
@@ -8,7 +8,9 @@
       <li v-for="error in errors" :value="error.name" v-bind:key="error.name">{{ error }}</li>
     </ul>
   </p>
-    <form  @submit.prevent=" checkForm" method="post">
+    <button @click="redirectClient" style="float:right">Click to Navigate</button>
+    <form  @submit=" checkForm" v-if="!submitted" method="post">
+      
      
       <div class="row">
         <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
@@ -79,7 +81,7 @@
       <hr>
       <div class="row">
         <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-          <button type="submit" class="btn btn-primary">Submit!
+          <button type="submit" @click="saveClient" class="btn btn-primary">Submit!
           </button>
         </div>
       </div>
@@ -91,10 +93,10 @@
 
 
 <script>
-
 import axios from 'axios';
+import DateService from "../services/DataServices";
 export default {
-     name: 'UserInfo',
+     name: 'CreateClient',
      data () {
          
     return {
@@ -117,7 +119,8 @@ export default {
 
           
       ],
-      selectedEducationLevel:  null
+      selectedEducationLevel:  null,
+      submitted : false,
       
     }
 
@@ -154,7 +157,33 @@ export default {
           this.errors.push("Education is required");
         }
          e.preventDefault();
-      }
+      }, 
+
+      saveClient() {
+        var data = {
+          name  : this.name,
+          email : this.email,
+          phone : this.phone,
+          gender : this.gender,
+          dob : this.dob,
+          nationality : this.nationality,
+          education : this.education
+        };
+        DateService.createClient(data)
+        .then(response => {
+          console.log(response.data);
+          this.submitted = true;
+          history.push('/')
+
+        })
+        .catch(e => {
+          console.log(e);
+        })
+      },
+      redirectClient() {
+            this.$router.replace('/showall');
+        }
+     
     },
 
     
