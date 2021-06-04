@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Collection;
 
 class UserController extends Controller
 {
+
+    /*  Store Client data to CSV file */
     public function addUser(Request $request)
     {
         $request->validate([
@@ -47,7 +49,7 @@ class UserController extends Controller
         
 
     }
-
+     /* Fetching all Client from csv file */
     public function getClient(Request $request)
     {
         $file = fopen('users.csv', 'r');
@@ -58,6 +60,32 @@ class UserController extends Controller
         
 
          return response()->json($all_userData,200);
+    }
+
+    /* fetch particular client details from csv */
+
+    public function getclientDetail($id)
+    {
+        // Start count for coulmn
+        $column = $id;
+        $i = 0;
+        $file = fopen('users.csv', 'r');
+        while (($row = fgetcsv($file)) !== false){
+            if($i >= $column){
+                
+                $client_details = $row;
+            }
+            $i++;
+            
+             
+        };
+        
+        return response()->json($client_details,200);
+        
+        
+       
+        
+
     }
 
    

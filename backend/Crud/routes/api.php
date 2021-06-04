@@ -15,11 +15,13 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
+/* saving client detail to csv file */
 Route::post('createClient',  [UserController::class, 'addUser']);
 
-//Export route
+/* fetching all client from csv file */
 Route::get('getClient', [UserController::class, "getClient"])->name("getclient");
+
+/* fetching particular client from csv file */
+
+Route::get('getClient/{id}',[UserController::class,'getclientDetail']);

@@ -13,6 +13,10 @@ export default new Router({
         {
             path: "/showall",
             component: () => import("../components/Client")
+        },
+        {
+            path: '/clientdetail/:id',
+            component: () => import("../components/ClientDetail")
         }
     ]
 });

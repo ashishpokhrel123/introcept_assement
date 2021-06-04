@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Client />
+    <ClientDetail />
     
     
   </div>
@@ -8,14 +8,14 @@
 
 <script>
 
-import Client from './components/Client';
+import ClientDetail from './components/ClientDetail';
 
 
 export default {
   name: 'App',
   components: {
     
-    Client
+    ClientDetail
    
     
   }
