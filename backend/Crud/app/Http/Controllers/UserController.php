@@ -23,7 +23,7 @@ class UserController extends Controller
             'education' => ['required', 'string']
         ]);
 
-        
+        /* for headers */
         $file_open = fopen('users.csv', 'a');
         header('Content-type: application/csv');
         header('Content-Disposition: attachment; filename='.$file_open);
