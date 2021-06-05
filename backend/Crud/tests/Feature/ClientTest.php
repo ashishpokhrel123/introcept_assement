@@ -1,36 +1,21 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Feature;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class ClientTest extends TestCase
 {
     /**
-     * A basic unit test example.
+     * A basic feature test example.
      *
      * @return void
      */
-    public function testStoreDateToCsv()
-    {
+   
 
-        // testing for storing data in csv file
-        $data = [
-            'name' => 'New Client',
-            'email' => 'client123@gmail.com',
-            'phone' => '9860409629',
-            'gender' => 'male',
-            'dob' => '1997-09-27',
-            'nationality' => 'clientcountry',
-            'education' => 'client',
-        ];
-        $response = $this->json('POST', route('create'), $data);
-        $response->assertStatus(201);
-        $response->assertJson($data);
-
-    }
-
-    // testing for fetching data from csv file
+    //testing for fetching data from csv file
 
     public function testFetchDatefromCsv()
     {
