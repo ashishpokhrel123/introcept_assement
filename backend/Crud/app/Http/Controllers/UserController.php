@@ -28,6 +28,8 @@ class UserController extends Controller
         header('Content-type: application/csv');
         header('Content-Disposition: attachment; filename='.$file_open);
         header("Content-Transfer-Encoding: UTF-8");
+
+        /* for increment of rows */
         $no_rows = count(file("users.csv"));
         if($no_rows > 1)
        {
