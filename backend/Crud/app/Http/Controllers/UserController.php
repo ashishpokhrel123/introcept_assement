@@ -25,6 +25,9 @@ class UserController extends Controller
 
         
         $file_open = fopen('users.csv', 'a');
+        header('Content-type: application/csv');
+        header('Content-Disposition: attachment; filename='.$file_open);
+        header("Content-Transfer-Encoding: UTF-8");
         $no_rows = count(file("users.csv"));
         if($no_rows > 1)
        {
@@ -41,6 +44,10 @@ class UserController extends Controller
             'Education' => $request->education,
          );
          fputcsv($file_open, $form_data);
+    
+         fclose($file_open);
+        
+            
          return response()->json(['message'=>'successfully, User save to csv','data'=>$form_data],201);
 
 
@@ -62,31 +69,7 @@ class UserController extends Controller
          return response()->json($all_userData,200);
     }
 
-    /* fetch particular client details from csv */
-
-    public function getclientDetail($id)
-    {
-        // Start count for coulmn
-        $column = $id;
-        $i = 0;
-        $file = fopen('users.csv', 'r');
-        while (($row = fgetcsv($file)) !== false){
-            if($i >= $column){
-                
-                $client_details = $row;
-            }
-            $i++;
-            
-             
-        };
-        
-        return response()->json($client_details,200);
-        
-        
-       
-        
-
-    }
+    
 
    
 }

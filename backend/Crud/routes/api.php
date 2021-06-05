@@ -22,6 +22,4 @@ Route::post('createClient',  [UserController::class, 'addUser']);
 /* fetching all client from csv file */
 Route::get('getClient', [UserController::class, "getClient"])->name("getclient");
 
-/* fetching particular client from csv file */
 
-Route::get('getClient/{id}',[UserController::class,'getclientDetail']);
