@@ -34,21 +34,21 @@ class UserController extends Controller
         $no_rows = ($no_rows - 1) + 1;
         }
         $form_data = array(
-            'S_no'  => $no_rows,
-            'Name'  => $request->name,
-            'Email'  => $request->email,
-            'Phone' => $request->phone,
-            'Gender' => $request->gender,
-            'Date of Birth' => $request->dob,
-            'Nationality' => $request->nationality,
-            'Education' => $request->education,
+            's_no'  => $no_rows,
+            'name'  => $request->name,
+            'email'  => $request->email,
+            'phone' => $request->phone,
+            'gender' => $request->gender,
+            'dob' => $request->dob,
+            'nationality' => $request->nationality,
+            'education' => $request->education,
          );
          fputcsv($file_open, $form_data);
     
          fclose($file_open);
         
             
-         return response()->json(['message'=>'successfully, User save to csv','data'=>$form_data],201);
+         return response()->json($form_data,201);
 
 
         

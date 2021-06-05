@@ -17,7 +17,7 @@ use App\Http\Controllers\UserController;
 
 
 /* saving client detail to csv file */
-Route::post('createClient',  [UserController::class, 'addUser']);
+Route::post('createClient',  [UserController::class, 'addUser'])->name('create');
 
 /* fetching all client from csv file */
 Route::get('getClient', [UserController::class, "getClient"])->name("getclient");
